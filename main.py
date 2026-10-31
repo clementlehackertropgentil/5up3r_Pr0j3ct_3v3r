@@ -3,7 +3,6 @@ import base64
 import hashlib
 import os
 import secrets
-import string
 
 from dotenv import load_dotenv
 
@@ -28,7 +27,7 @@ def generate_password(master_secret: str, salt: bytes, length=24):
         dklen=length,
     )
     password = base64.urlsafe_b64encode(derived_key).decode("utf-8")
-    return password[:length]
+    return password[:length]  # Truncate to the desired length
 
 
 if __name__ == "__main__":
